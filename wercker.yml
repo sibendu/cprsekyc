@@ -6,7 +6,7 @@ build:
 push:
   steps:
     # Push to public docker repo
-    - internal/docker-push:
+    - internal/docker-push: 
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
         tag:  my-amazing-tag
