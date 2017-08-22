@@ -1,0 +1,9 @@
+# The container definition we want to use for developing our app
+box: node
+# Defining the dev pipeline
+dev:
+  steps:
+    - npm-install
+    - internal/watch:
+        code: node app.js
+        reload: true
