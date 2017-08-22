@@ -9,7 +9,7 @@ push:
     - internal/docker-scratch-push:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
-        tag:  $DOCKER_TAG
+        tag:  my-amazing-tag
         repository: $DOCKER_REPOSITORY
         registry: https://registry.hub.docker.com
-        cmd: node pipeline/source/app.js
+        cmd: npm start
