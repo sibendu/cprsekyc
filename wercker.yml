@@ -1,9 +1,15 @@
-# The container definition we want to use for developing our app
-box: node
-# Defining the dev pipeline
-dev:
+box: node:6.10
+build:
   steps:
+    # A step that executes `npm install` command
     - npm-install
-    - internal/watch:
-        code: node app.js
-        reload: true
+push:
+  steps:
+    # Push to public docker repo
+    - internal/docker-push:
+        username: sibendu.das@oracle.com
+        password: password
+        tag: latest
+        repository: sibendudas/cprsekyc
+        registry: https://index.docker.io/v1/
+        cmd: node pipeline/source/app.js
