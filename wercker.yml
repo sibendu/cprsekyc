@@ -12,4 +12,4 @@ push:
         tag:  my-amazing-tag
         repository: $DOCKER_REPOSITORY
         registry: https://registry.hub.docker.com
-        cmd: npm start
+        cmd: node pipeline/source/app.js
