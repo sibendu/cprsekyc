@@ -12,6 +12,6 @@
     "express-myconnection": "1.0.4",
     "jade": "*",
     "mysql": "2.2.0",
-    "request": "^2.81.0"
+    "request": "2.81.0"
   }
 }
