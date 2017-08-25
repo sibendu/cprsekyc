@@ -50,7 +50,7 @@ app.use(
         user: 'root',
         password : 'welcome1',
         port : 3306, //port mysql
-        database:'mysql'
+        database:'mysql	'
 
     },'pool') //or single
 
