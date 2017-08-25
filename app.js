@@ -46,11 +46,11 @@ app.use(
     
     connection(mysql,{
         
-        host: '141.144.29.245',
+    	host: 'localhost',
         user: 'root',
-        password : 'welcome1',
+        password : 'password',
         port : 3306, //port mysql
-        database:'mysql'
+        database:'nodejs'
 
     },'pool') //or single
 

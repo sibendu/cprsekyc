@@ -129,6 +129,7 @@ exports.delete_customer = function(req,res){
 };
 
 
+
 exports.verify = function(req, res){
     
     var id = req.params.id;
@@ -136,24 +137,37 @@ exports.verify = function(req, res){
     req.getConnection(function (err, connection) {
         
         var data = {
-            
             status   : 'Verified'
-        
         };
         
         connection.query("UPDATE customer set ? WHERE id = ? ",[data,id], function(err, rows)
         {
-  
-          if (err)
+          	
+          if (err){
               console.log("Error Updating : %s ",err );
-         
-          res.redirect('/customers');
-          
+		}else{
+		
+			var c = connection.query('SELECT EMAIL FROM customer WHERE id = ?',[id],function(err,rows)
+        		{
+				console.log(rows[0].EMAIL);
+				var request = require("request");
+
+				var url = "http://141.144.29.26:9073/crm/customer?action=updatestatus&email="+rows[0].EMAIL+"&status=Verified";
+ 
+				request(url, function(error, response, 						body) {
+  					 if(error){
+                 			console.log(error);
+          				 }
+				});
+			});		
+           }
+		res.redirect('/customers');
         });
-    
     });
 
 };
+
+
 
 /*Is it a verified customer?*/
 exports.check = function(req,res, next){
