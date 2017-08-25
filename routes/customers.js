@@ -60,8 +60,8 @@ exports.save = function(req,res){
             name    : input.name,
             address : input.address,
             email   : input.email,
-            phone   : input.phone 
-        
+            phone   : input.phone, 
+            status  : 'Verified'
         };
         
         var query = connection.query("INSERT INTO customer set ? ",data, function(err, rows)
@@ -159,7 +159,8 @@ exports.verify = function(req, res){
 exports.check = function(req,res, next){
 
     var name = req.body.name;
-    
+    console.log(req.body);
+    console.log(name);
     req.getConnection(function(err,connection){
        
         var query = connection.query('SELECT * FROM customer WHERE name = ?',[name],function(err,rows)
@@ -172,17 +173,17 @@ exports.check = function(req,res, next){
 		         console.log('No matching user found');
 			    var data = {
             			name    : req.body.name,
-			           address : req.body.address,
+            			address : req.body.address,
             			email   : req.body.email,
             			phone   : req.body.phone,
-					status  : 'To verify' 
+            			status  : 'To verify' 
         			};
         
         			var qry = connection.query("INSERT INTO customer set ? ",data, function(err, newrows)
         			{
  			         if (err)
               			console.log("Error inserting : %s ",err );
-				    console.log('Customer will be verfied');
+				    console.log('Customer will be verified');
 					return res.send(data);	          
         			});
 
